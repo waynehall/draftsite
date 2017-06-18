@@ -1,0 +1,186 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "draftmain/site.css" %}">
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>{{player.player_name}}</title>
+    <script src="{% static "draftmain/d3js/d3.v3.min.js" %}"></script>
+	<script src="{% static "draftmain/d3js/RadarChart.js" %}"></script>
+  </head>
+  <body>
+
+		<div class="navbar">
+    <div class="container">
+    <p class="logonba">NBA <span class="logodraft">draft</span></p>
+    </div>
+    <div id="navpad"></div>
+      <a> Forum</a>
+      <a> Blog </a>
+      <a> News</a>
+      <a> Articles</a>
+      <a>  Mocks</a>
+      <a> Home </a>
+</div>
+<div class="main">
+    <div class="middle-column">
+			    <div id="body">
+					<div id="chart"></div>
+          <div class="stats-block">
+                        <div class="itemtitle">
+                <p> Player Stats </p>
+            </div>
+            <table>
+              <tr>
+                <th>Year</th>
+                <th>Points</th>
+                <th>Rebounds</th>
+              </tr>
+              <tr>
+                <td>2016-2017</td>
+                <td>1million</td>
+                <td>2</td>
+              </tr>
+
+</table>
+          </div>
+    </div>
+    </div>
+    <div class="player-column">
+            <img src="fultz.jpg">
+						<div class="player-notes">
+            <h2> {{player.player_name}}</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+						</div>
+	  </div>
+
+</div>
+
+
+
+
+    <script type="text/javascript">
+    var w = 275,
+	h = 275;
+
+var colorscale = d3.scale.category10();
+
+//Legend titles
+var LegendOptions = ['{{player.player_name}}','Average Draft PG'];
+
+
+//Data
+var p{{player.player_id}} = [ '{{player.player_name}}' ,
+      [
+			{axis:"FG%",value:0.93},
+			{axis:"3PT%",value:0.82},
+			{axis:"FT%",value:0.74},
+			{axis:"AST%",value:0.83},
+			{axis:"PTS/40",value:0.82},
+			{axis:"REB%",value:0.33},
+			{axis:"STL%",value:0.23},
+			{axis:"BLK%",value:0.37},
+			{axis:"PER",value:0.68},
+			{axis:"OBPM",value:0.57},
+			{axis:"DBPM",value:0.38}
+		  ]
+    ];
+var p2 = [
+			{axis:"FG%",value:0.73},
+			{axis:"3PT%",value:0.42},
+			{axis:"FT%",value:0.64},
+			{axis:"AST%",value:0.53},
+			{axis:"PTS/40",value:0.42},
+			{axis:"REB%",value:0.63},
+			{axis:"STL%",value:0.83},
+			{axis:"BLK%",value:0.67},
+			{axis:"PER",value:0.88},
+			{axis:"OBPM",value:0.57},
+			{axis:"DBPM",value:0.78}
+		  ];
+var d = [
+  p{{player.player_id}}[1],
+  p2
+	];
+console.log('{{player.player_id}}');
+{% for i in "1234567" %}
+console.log({{i}})
+{% endfor %}
+//Options for the Radar chart, other than default
+var mycfg = {
+  w: w,
+  h: h,
+  maxValue: 1,
+  levels: 6,
+  ExtraWidthX: 300
+}
+
+//Call function to draw the Radar chart
+//Will expect that data is in %'s
+RadarChart.draw("#chart", d, mycfg);
+
+////////////////////////////////////////////
+/////////// Initiate legend ////////////////
+////////////////////////////////////////////
+
+var svg = d3.select('#body')
+	.selectAll('svg')
+	.append('svg')
+	.attr("width", w+300)
+	.attr("height", h)
+
+//Create the title for the legend
+/*var text = svg.append("text")
+	.attr("class", "title")
+	.attr('transform', 'translate(90,0)') 
+	.attr("x", w - 70)
+	.attr("y", 10)
+	.attr("font-size", "12px")
+	.attr("fill", "#404040")
+	.text("What % of owners");
+	*/	
+//Initiate Legend	
+var legend = svg.append("g")
+	.attr("class", "legend")
+	.attr("height", 100)
+	.attr("width", 200)
+	.attr('transform', 'translate(190,20)') 
+	;
+	//Create colour squares
+	legend.selectAll('rect')
+	  .data(LegendOptions)
+	  .enter()
+	  .append("rect")
+	  .attr("x", w - 65)
+	  .attr("y", function(d, i){ return i * 20;})
+	  .attr("width", 10)
+	  .attr("height", 10)
+	  .style("fill", function(d, i){ return colorscale(i);})
+	  ;
+	//Create text next to squares
+	legend.selectAll('text')
+	  .data(LegendOptions)
+	  .enter()
+	  .append("text")
+	  .attr("x", w - 52)
+	  .attr("y", function(d, i){ return i * 20 + 9;})
+	  .attr("font-size", "11px")
+	  .attr("fill", "#737373")
+	  .text(function(d) { return d; })
+	  ;	
+    
+    </script>
+
+  </body>
+</html>

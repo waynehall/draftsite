@@ -6,4 +6,5 @@ app_name = 'draftmain'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^(?P<player_id>[0-9]+)/$', views.playerView, name="playerView"),
 ]
